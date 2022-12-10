@@ -195,6 +195,15 @@ def addreceipt():
         return redirect(url_for('addreceipt'))
     return render_template('receipts/addReceipt.html',title = "Add Receipt Page", form = form,categories = categories)
 
+@app.route('/library', methods=['GET','POST'])
+def library():
+    """
+    Displays the user's uploaded receipts and retrieves values associated with receipts from database
+    """
+    receipts = AddReceipt.query.all()
+    return render_template ('receipts/library.html', title = "Library", receipts = receipts)
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """
